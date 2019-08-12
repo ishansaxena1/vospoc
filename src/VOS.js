@@ -1,31 +1,35 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import Modal from "@mindtickle/mt-ui-components/lib/Modal"
+import "./VOS.css";
 
 class VOSComponent extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {visible: true};
+    }
+
+    handleOk = () => {
+        this.setState({visible: false});
+        if(typeof this.props.handleOk === 'function') {
+            this.props.handleOk();
+        }
+    }
+
+    handleCancel = () => {
+        this.setState({visible: false});
+        if(typeof this.props.handleCancel === 'function') {
+            this.props.handleCancel();
+        }
     }
 
     render() {
-        return <h1>VOS Working... </h1>;
+        return <div className="vos-area">
+            <h1>VOS is working</h1>
+            <Modal title="TEST" visible={this.state.visible} onOk={this.handleOk} onCancle={this.handleCancel}>
+                <p>Content</p>
+            </Modal>
+        </div>
     }
 }
 
-class VOS {
-    constructor(props) {
-        this.props = props;
-    }
-
-    render() {
-        const {domID} = this.props;
-        const container = document.getElementById(domID);
-        ReactDOM.render(<VOSComponent/>, container);
-    }
-
-    destroy() {
-        const {domID} = this.props;
-        ReactDOM.unmountComponentAtNode(document.getElementById(domID));
-    }
-}
-
-export default VOS;
+export default VOSComponent;

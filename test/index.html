@@ -3,13 +3,40 @@
     <head>
 
     </head>
-    <body>
-        <div id="container"></div>
-        <script type="text/javascript" src="../dist/bundle.js"></script>
+    <body ng-app="app">
+        <nav>
+            <a ui-sref="foo">Angular HOME</a>
+            <a ui-sref="bar">Angular !HOME</a>
+        </nav>
+        <ui-view></ui-view>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+        <script src="//unpkg.com/@uirouter/angularjs/release/angular-ui-router.min.js"></script>
+        <script type="text/javascript" src="bundle.js"></script>
         <script type="text/javascript">
-            console.log(VOS);
-            const vos = new VOS.default({domID: "container"});
-            vos.render();
+            const app = angular.module("app", ["ui.router"]);
+
+            app.config(function($stateProvider, $urlRouterProvider) {
+                $stateProvider.state({
+                    name: "foo",
+                    url: "/foo",
+                    template: "<div><h1>React app running below</h1><div id=\"container\"></div></div>",
+                    controller: "Ctrl"
+                });
+
+                $stateProvider.state({
+                    name: "bar",
+                    url: "/bar",
+                    template: "<div><h1>Angular app</h1></div>"
+                })
+
+                $urlRouterProvider.otherwise("foo");
+            });
+
+            app.controller("Ctrl", function($scope) {
+                $scope.message = "React app running below";
+                const vos = new VOS.default({domID: "container"});
+                vos.render();
+            });
         </script>
     </body>
 </html>
