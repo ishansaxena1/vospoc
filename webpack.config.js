@@ -27,9 +27,6 @@ module.exports = {
             "@mindtickle/mt-ui-components": resolve(__dirname, "node_modules/@mindtickle/mt-ui-components")
         }
     },
-    optimization: {
-        usedExports: true
-    },
     module: {
         rules: [
             {
@@ -54,19 +51,19 @@ module.exports = {
                 ],
                 loader: ["style-loader", "css-loader"]
             },
-            {
-                test: /\.html$/i,
-                exclude: /node_modules/,
-                loader: "html-loader"
-            }
+            // {
+            //     test: /\.html$/i,
+            //     exclude: /node_modules/,
+            //     loader: "html-loader"
+            // }
         ]
     },
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: "./src/index.html",
-            filename: "./index.html"
-        }),
-        new webpack.optimize.AggressiveMergingPlugin(),
-        new UglifyJsPlugin(),
-    ]
+    // plugins: [
+    //     new HtmlWebpackPlugin({
+    //         template: "./src/index.html",
+    //         filename: "./index.html"
+    //     }),
+    //     new webpack.optimize.AggressiveMergingPlugin(),
+    //     new UglifyJsPlugin(),
+    // ]
 }

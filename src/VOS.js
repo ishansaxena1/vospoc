@@ -25,7 +25,7 @@ class VOSComponent extends React.Component {
     render() {
         return <div className="vos-area">
             <h1>VOS is working</h1>
-            <Modal title="TEST" visible={this.state.visible} onOk={this.handleOk} onCancle={this.handleCancel}>
+            <Modal title="TEST" visible={this.state.visible} onOk={this.handleOk} onCancel={this.handleCancel}>
                 <p>Content</p>
             </Modal>
         </div>
