@@ -5,6 +5,7 @@ import "./VOS.css";
 class VOSComponent extends React.Component {
     constructor(props) {
         super(props);
+        console.log(props);
         this.state = {visible: true};
     }
 
